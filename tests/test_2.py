@@ -1,8 +1,8 @@
 import sys
 #sys.path.append('../')
 sys.path.insert(0, '..')
-from CSSPy.dataset_tools import *
-from CSSPy.visualization_tools import *
+#from CSSPy.dataset_tools import *
+#from CSSPy.visualization_tools import *
 from CSSPy.derandomized_projection_dpp_sampler import *
 from CSSPy.derandomized_volume_sampler import *
 from CSSPy.volume_sampler import *
@@ -22,8 +22,8 @@ from matplotlib import pyplot as plt
 ## * Uniform sampling
 
 # Import two datasets
-dataset_name = "BASEHOCK"
-dataset_file = "BASEHOCK"+str("_X")
+dataset_name = "RELATHE"
+dataset_file = "RELATHE"+str("_X")
 t = timeit.Timer('char in text', setup='text = "sample string"; char = "g"')
 X_df = pd.read_csv('datasets/'+dataset_file+'.csv', sep=",", header=None)
 X_matrix = X_df.values
@@ -36,7 +36,7 @@ t_1 = timeit.default_timer()
 
 #_,D,V = np.linalg.svd(X_matrix)
 
-_,D,V = svds(X_matrix, 400 , return_singular_vectors='true')
+_,D,V = svds(X_matrix, 40 , return_singular_vectors='true')
 
 k = 10
 t_2 = timeit.default_timer()
@@ -66,11 +66,11 @@ klv_test_1 = np.asarray(list(reversed(np.sort((np.diag(np.dot(np.transpose(V_k),
 ##plot_leverage_scores("vector",klv_test_1,dataset_name,k)
 ##plot_cumulative_leverage_scores("vector",klv_test_1,dataset_name,k)
 ##error_fro_list_derandomized_projection_dpp_sampling = launch_exp_derandomization_projection_dpp(X_matrix,dataset_name,k,exp_number) 
-#error_fro_list_double_phase_sampling = launch_exp_double_phase_sampler(X_matrix,dataset_name,k,exp_number) 
+error_fro_list_double_phase_sampling = launch_exp_double_phase_sampler(X_matrix,dataset_name,k,exp_number) 
 ##error_fro_list_derandomized_volume_sampling = launch_exp_derandomized_volume_sampling(X_matrix,dataset_name,k,exp_number)    
 #error_fro_list_projection_DPP = launch_exp_projection_dpp(X_matrix,dataset_name,k,exp_number)    
-#error_fro_list_pivoted_qr_sampling = launch_exp_pivoted_qr_sampling(X_matrix,dataset_name,k,exp_number)
-#error_fro_list_largest_lvs_sampling = launch_exp_largest_leveragescores_sampling(X_matrix,dataset_name,k,exp_number) 
+error_fro_list_pivoted_qr_sampling = launch_exp_pivoted_qr_sampling(X_matrix,dataset_name,k,exp_number)
+error_fro_list_largest_lvs_sampling = launch_exp_largest_leveragescores_sampling(X_matrix,dataset_name,k,exp_number) 
 error_fro_list_optimized_projection_DPP = launch_exp_optimized_projection_dpp(X_matrix,dataset_name,k,exp_number)    
 error_fro_list_volume_sampling = launch_exp_volume_sampling(X_matrix,dataset_name,k,exp_number)    
 error_fro_list_uniform_sampling = launch_exp_uniform_sampling(X_matrix,dataset_name,k,exp_number) 
@@ -79,31 +79,82 @@ error_fro_list_uniform_sampling = launch_exp_uniform_sampling(X_matrix,dataset_n
 #plt.boxplot([error_fro_list_uniform_sampling,error_fro_list_volume_sampling,error_fro_list_optimized_projection_DPP,error_fro_list_optimized_projection_DPP_with_rejection,error_fro_list_pivoted_qr], showfliers=False)
 #plt.boxplot([error_fro_list_uniform_sampling,error_fro_list_volume_sampling,error_fro_list_optimized_projection_DPP,error_fro_list_optimized_projection_DPP_with_rejection,error_fro_list_pivoted_qr], showfliers=False)
 #plt.boxplot([error_fro_list_uniform_sampling,error_fro_list_lvscores_sampling,error_fro_list_volume_sampling,error_fro_list_optimized_projection_DPP], showfliers=False)
-plt.figure(figsize=(10, 6)) 
-ax = plt.subplot(111)   
+  
 #plt.boxplot([error_fro_list_uniform_sampling,error_fro_list_volume_sampling,error_fro_list_optimized_projection_DPP,error_fro_list_projection_DPP,error_fro_list_largest_lvs_sampling,error_fro_list_pivoted_qr_sampling,error_fro_list_derandomized_volume_sampling,error_fro_list_double_phase_sampling], showfliers=False)
 
+
+def random_error_list_to_min_error_list(error_list):
+    l_test = len(error_list)
+    min_value_random_list = min(error_list)
+    new_list = [min_value_random_list]*l_test
+    return new_list
+
+
 error_fro_aggregated_list = []
+
+boosting_error_fro_aggregated_list = []
+
+min_error_fro_list_uniform_sampling = random_error_list_to_min_error_list(error_fro_list_uniform_sampling)
+min_error_fro_list_volume_sampling = random_error_list_to_min_error_list(error_fro_list_volume_sampling)
+min_error_fro_list_optimized_projection_DPP = random_error_list_to_min_error_list(error_fro_list_optimized_projection_DPP)
+min_error_fro_list_double_phase_sampling = random_error_list_to_min_error_list(error_fro_list_double_phase_sampling)
+
+
+
+
+boosting_error_fro_aggregated_list.append(min_error_fro_list_uniform_sampling)
+boosting_error_fro_aggregated_list.append(min_error_fro_list_volume_sampling)
+boosting_error_fro_aggregated_list.append(min_error_fro_list_optimized_projection_DPP)
+boosting_error_fro_aggregated_list.append(error_fro_list_largest_lvs_sampling)
+boosting_error_fro_aggregated_list.append(error_fro_list_pivoted_qr_sampling)
+boosting_error_fro_aggregated_list.append(min_error_fro_list_double_phase_sampling)
+
+
+
 
 error_fro_aggregated_list.append(error_fro_list_uniform_sampling)
 error_fro_aggregated_list.append(error_fro_list_volume_sampling)
 error_fro_aggregated_list.append(error_fro_list_optimized_projection_DPP)
+error_fro_aggregated_list.append(error_fro_list_largest_lvs_sampling)
+error_fro_aggregated_list.append(error_fro_list_pivoted_qr_sampling)
+error_fro_aggregated_list.append(error_fro_list_double_phase_sampling)
 
+plt.figure(figsize=(10, 6)) 
+ax = plt.subplot(111) 
 plt.boxplot(error_fro_aggregated_list, showfliers=False)
 
 #plt.boxplot([error_fro_list_uniform_sampling,error_fro_list_volume_sampling,error_fro_list_optimized_projection_DPP], showfliers=False)
 
-
 plt.ylabel('$\|\mathrm{X- \pi_{S}(X)}\|_{Fr}$', fontsize=16)
  
-
 #plt.legend(bbox_to_anchor=(1.04,1), loc="bottomleft", inset=.02, ["Volume Sampling","Projection DPP"])
 #plt.legend("bottomleft", inset=.02, c("Volume Sampling","Projection DPP"), fill=topo.colors(3), horiz=TRUE, cex=0.8)
 #plt.gca().xaxis.set_ticklabels(["Uniform Sampling","LVScores Sampling","Volume Sampling","Projection DPP"])
 
 #plt.gca().xaxis.set_ticklabels(["Uniform Sampling","Volume Sampling","Optimized Projection DPP","Projection DPP","Largest lvs","Pivoted QR","derandomized_volume_sampling","Double Phase"])
 
-plt.gca().xaxis.set_ticklabels(["Uniform Sampling","Volume Sampling","Projection DPP"])
+plt.gca().xaxis.set_ticklabels(["Uniform Sampling","Volume Sampling","Projection DPP","Largest lvs","Pivoted QR","Double Phase"])
+
+
+plt.show()
+
+
+
+plt.figure(figsize=(10, 6)) 
+ax = plt.subplot(111) 
+plt.boxplot(boosting_error_fro_aggregated_list, showfliers=False)
+
+#plt.boxplot([error_fro_list_uniform_sampling,error_fro_list_volume_sampling,error_fro_list_optimized_projection_DPP], showfliers=False)
+
+plt.ylabel('$\|\mathrm{X- \pi_{S}(X)}\|_{Fr}$', fontsize=16)
+ 
+#plt.legend(bbox_to_anchor=(1.04,1), loc="bottomleft", inset=.02, ["Volume Sampling","Projection DPP"])
+#plt.legend("bottomleft", inset=.02, c("Volume Sampling","Projection DPP"), fill=topo.colors(3), horiz=TRUE, cex=0.8)
+#plt.gca().xaxis.set_ticklabels(["Uniform Sampling","LVScores Sampling","Volume Sampling","Projection DPP"])
+
+#plt.gca().xaxis.set_ticklabels(["Uniform Sampling","Volume Sampling","Optimized Projection DPP","Projection DPP","Largest lvs","Pivoted QR","derandomized_volume_sampling","Double Phase"])
+
+plt.gca().xaxis.set_ticklabels(["Uniform Sampling","Volume Sampling","Projection DPP","Largest lvs","Pivoted QR","Double Phase"])
 
 
 plt.show()
