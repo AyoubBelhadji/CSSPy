@@ -43,8 +43,8 @@ class double_Phase_Sampler:
     def PhaseOne(self):
         temp_list = list(reversed(np.argsort(self.lvs_array)))
         sampled_indices = np.random.choice(self.N, self.phase_one_s, replace=True, p=list(self.lvs_array))
-        print(sampled_indices.dtype)
-        print(sampled_indices)
+        #print(sampled_indices.dtype)
+        #print(sampled_indices)
         column_selected = self.Q[:,sampled_indices]
         D_Q = np.diag(np.dot(column_selected.T,column_selected))
         self.phase_one_sampling_list = sampled_indices

@@ -26,7 +26,6 @@ import timeit
 from scipy.sparse.linalg import svds
 
 
-
 def launch_exp_derandomization_projection_dpp(X_matrix,dataset_name,k,exp_number):
 
     print(timeit.default_timer())
@@ -210,7 +209,7 @@ def launch_exp_derandomized_volume_sampling(X_matrix,dataset_name,k,exp_number):
 
 
 
-def launch_exp_volume_sampling(X_matrix,dataset_name,k,exp_number):
+def launch_exp_volume_sampling(X_matrix,Y_matrix,dataset_name,k,exp_number):
 
     print(timeit.default_timer())
     _,D,V = np.linalg.svd(X_matrix)
@@ -237,7 +236,7 @@ def launch_exp_volume_sampling(X_matrix,dataset_name,k,exp_number):
         if np.linalg.matrix_rank(A_S)==k:
             delta_time_list_volume_sampling[t] = timeit.default_timer() - delta_time_list_volume_sampling[t]
             error_temp_fro = approximation_error_function_fro(k,X_matrix,A_S,D)
-            error_temp_spectral = approximation_error_function_spectral(k,X_matrix,A_S,D)        
+            error_temp_spectral = approximation_error_function_spectral(k,X_matrix,A_S,D)    
             error_fro_list_volume_sampling[t]=error_temp_fro
             error_spectral_list_volume_sampling[t]=error_temp_spectral
             sampling_l = NAL.sampling_list
@@ -262,7 +261,6 @@ def launch_exp_uniform_sampling(X_matrix,dataset_name,k,exp_number):
         print("Uniform sampling selection, sample number")
         print(t)
         A_S = NAL.MultiRounds()
-        print(NAL.sampling_list)
         while(np.linalg.matrix_rank(A_S)<k):
             print("fail")
             #NAL_1 = projection_DPP_Sampler(X_matrix, k, V_k,d)
