@@ -29,7 +29,6 @@ class largest_leveragescores_Sampler:
         return 1/(self.k)*np.diag(np.dot(self.Q,self.Q.T))
 
     def MultiRounds(self):
-        print(len(self.lvs_array))
         temp_list = list(reversed(np.argsort(self.lvs_array)))
         sampled_indices_ = temp_list[0:self.k]
         self.sampling_list = sampled_indices_
