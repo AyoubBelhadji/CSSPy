@@ -15,29 +15,37 @@ from scipy.sparse.linalg import svds
 
 
 class Uniform_Sampler:
+    """ Uniform Sampler object
+    """
     def __init__(self, A, k,N):
+        """ Create a Uniform Sampler for the matrix :math:`A` for k-low rank apparoximation.
+        :param A: 
+            Matrix :math:`A`.
+        :type A: 
+            array_type
+        :param k: 
+            The order of low rank apparoximation.
+        :type k: 
+            int
+        :param N: 
+            The dimension of subsampling (the number of columns) of A.
+        :type N: 
+            int
+        """
         self.A = A
-        #self.Q = Q
         self.N = N
-        #self.Q_temp = deepcopy(Q)
         self.k = k
         self.sampling_list = []
         self.column_selected_temp = np.zeros(k)
         self.sampling_round = 0
     def OneRound(self):
         sampled_indices = np.random.choice(self.N, self.k, replace=True)
-        #self.sampling_list.append(sampled_indices)
         return sampled_indices
     def MultiRounds(self):
-        #self.Q_temp = deepcopy(self.Q)
         self.sampling_list = []
-        #self.column_selected_temp = np.zeros(k)
-        self.sampling_round = 0
-        #self.lvs_array = self.Estimate_Leverage_Scores()        
+        self.sampling_round = 0      
         self.sampling_list = self.OneRound()
         return self.A[:,self.sampling_list]
-    def Estimate_Leverage_Scores(self):
-        return 1/(self.k)*np.diag(np.dot(self.Q.T,self.Q))
     def Evaluate_Approximation_error_fro(self,A_S):
         approximation_error_function_fro(self.k,self.A,A_S)
         return approximation_error_function_fro(self.k,self.A,A_S)
