@@ -13,7 +13,7 @@ rcParams.update({'figure.autolayout': True})
 ## * Plots of k-leverage scores and cumulative k-leverage scores
 
 # Importing the dataset
-dataset_name = "leukemia"
+dataset_name = "RELATHE"
 dataset_file = dataset_name+str("_X")
 t = timeit.Timer('char in text', setup='text = "sample string"; char = "g"')
 X_df = pd.read_csv('datasets/'+dataset_file+'.csv', sep=",", header=None)
