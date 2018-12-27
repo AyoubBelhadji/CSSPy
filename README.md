@@ -1,5 +1,5 @@
 # CSSPy
-[Documentation](https://img.shields.io/badge/Documentation-30-orange.svg)
+![Documentation](https://img.shields.io/badge/Documentation-30-orange.svg)
 ## Introduction
 CSSPy is a Python library. 
 This library aims to provide an implementation of state of the art algorithms for Column Subset Selection algorithms for low rank approximations.
