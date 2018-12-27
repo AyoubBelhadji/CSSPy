@@ -6,6 +6,9 @@ This library aims to provide an implementation of state of the art algorithms fo
 ## Articles
 This library cover the following articles:
 
+- Adaptive Sampling and Fast Low-Rank Matrix Approximation (https://www.cc.gatech.edu/~vempala/papers/relative.pdf) 
+- Provable Deterministic Leverage Score Sampling (https://akyrillidis.github.io/pubs/Conferences/frp0826.pdf)
+- ...
 
 ## Requirements
 
