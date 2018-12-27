@@ -5,17 +5,18 @@ This library aims to provide an implementation of state of the art algorithms fo
 
 ## Algorithms
 This library cover the following algorithms:
-Pivoted QR:
+
+Pivoted QR,
 > Golub, G.: "Numerical methods for solving linear least squares problems", 1965;
 
-Volume Sampling:
+Volume Sampling,
 > Deshpande, A. and Rademacher, L.: "Efficient volume sampling for row/column subset selection", 2010;
 
-Double Phase:
+Double Phase,
 > Boutsidis, C. and Mahoney, M. W. and Drineas, P.: "An Improved Approximation Algorithm for the Column Subset Selection Problem
 ", 2010;
 
-Deterministic Selection:
+Deterministic Selection,
 > Papailiopoulos, D. and Kyrillidis, A. and Boutsidis, C.: "Provable Deterministic Leverage Score Sampling", 2014; 
 - ...
 
