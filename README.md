@@ -9,7 +9,7 @@ This library cover the following articles:
 
 ## Requirements
 
-CSSPy works with Python ..??
+CSSPy works with [Python 3.4+] (http://docs.python.org/3/)
 
 ## Installation
 Install the package using the instructions
@@ -19,3 +19,7 @@ pip install .
 ```
 
 ## Dependencies
+- [NumPy](http://www.numpy.org)
+- [SciPy](http://www.scipy.org/)
+- [Matplotlib](http://matplotlib.org/)
+- [FrameBuilder](https://github.com/AyoubBelhadji/FrameBuilder)
