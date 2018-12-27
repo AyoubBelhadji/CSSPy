@@ -3,11 +3,20 @@
 CSSPy is a Python library. 
 This library aims to provide an implementation of state of the art algorithms for Column Subset Selection algorithms for low rank approximations.
 
-## Articles
-This library cover the following articles:
+## Algorithms
+This library cover the following algorithms:
+Pivoted QR:
+> Golub, G.: "Numerical methods for solving linear least squares problems", 1965;
 
-- Adaptive Sampling and Fast Low-Rank Matrix Approximation (https://www.cc.gatech.edu/~vempala/papers/relative.pdf) 
-- Provable Deterministic Leverage Score Sampling (https://akyrillidis.github.io/pubs/Conferences/frp0826.pdf)
+Volume Sampling:
+> Deshpande, A. and Rademacher, L.: "Efficient volume sampling for row/column subset selection", 2010;
+
+Double Phase:
+> Boutsidis, C. and Mahoney, M. W. and Drineas, P.: "An Improved Approximation Algorithm for the Column Subset Selection Problem
+", 2010;
+
+Deterministic Selection:
+> Papailiopoulos, D. and Kyrillidis, A. and Boutsidis, C.: "Provable Deterministic Leverage Score Sampling", 2014; 
 - ...
 
 ## Requirements
