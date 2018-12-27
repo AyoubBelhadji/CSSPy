@@ -16,7 +16,7 @@ dataset_name = "leukemia"
 exp_number = 50
 k = 10
 
-savefile_name = "10k/"+dataset_name+"_boosting_allalgos_"+str(exp_number)+"samples_k_"+str(k)+".txt"
+savefile_name = "boxplots/"+dataset_name+"_boosting_allalgos_"+str(exp_number)+"samples_k_"+str(k)+".txt"
 boosting_error_fro_aggregated_list_load = np.loadtxt(savefile_name)
 boosting_error_fro_aggregated_list_load_to_list = []
 for i in list(range(5)):
@@ -43,7 +43,7 @@ plt.ylabel(r'$\mathrm{\|\| X- \pi_{S}^{Fr} X \|\| _{Fr}}$', fontsize=18)
 
 #plt.gca().xaxis.set_ticklabels(["Uniform Sampling","Volume Sampling","Optimized Projection DPP","Projection DPP","Largest lvs","Pivoted QR","derandomized_volume_sampling","Double Phase"])
 plt.xticks(rotation=45)
-plt.gca().xaxis.set_ticklabels(["Volume S.","Projection DPP","Largest lvs","Pivoted QR","Double Phase","Double Phase (c = 100k)"])
+plt.gca().xaxis.set_ticklabels(["Volume S.","Projection DPP","Largest lvs","Pivoted QR","Double Phase"])
 
 
 
@@ -61,7 +61,7 @@ plt.show()
 
 
 
-savefile_name = "10k/"+dataset_name+"_allalgos_"+str(exp_number)+"samples_k_"+str(k)+".txt"
+savefile_name = "boxplots/"+dataset_name+"_allalgos_"+str(exp_number)+"samples_k_"+str(k)+".txt"
 error_fro_aggregated_list_load = np.loadtxt(savefile_name)
 error_fro_aggregated_list_load_to_list = []
 for i in list(range(5)):
@@ -89,7 +89,7 @@ plt.ylabel(r'$\mathrm{\|\| X- \pi_{S}^{Fr} X \|\| _{Fr}}$', fontsize=18)
 
 #plt.gca().xaxis.set_ticklabels(["Uniform Sampling","Volume Sampling","Optimized Projection DPP","Projection DPP","Largest lvs","Pivoted QR","derandomized_volume_sampling","Double Phase"])
 plt.xticks(rotation=45)
-plt.gca().xaxis.set_ticklabels(["Volume S.","Projection DPP","Largest lvs","Pivoted QR","Double Phase","Double Phase (c = 100k)"])
+plt.gca().xaxis.set_ticklabels(["Volume S.","Projection DPP","Largest lvs","Pivoted QR","Double Phase"])
 
 
 
