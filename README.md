@@ -9,7 +9,7 @@ This library cover the following articles:
 
 ## Requirements
 
-CSSPy works with [Python 3.4+] (http://docs.python.org/3/)
+CSSPy works with [Python 3.4+](http://docs.python.org/3/)
 
 ## Installation
 Install the package using the instructions
