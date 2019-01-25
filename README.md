@@ -1,5 +1,4 @@
 # CSSPy
-![Documentation](https://img.shields.io/badge/Documentation-50-yellow.svg) ![Examples](https://img.shields.io/badge/Examples-50-yellow.svg)
 ## Introduction
 CSSPy is a Python library. 
 This library aims to provide an implementation of state of the art algorithms for Column Subset Selection algorithms for low rank approximations.
@@ -16,7 +15,6 @@ Double Phase,
 
 Deterministic Selection,
 > Papailiopoulos, D. and Kyrillidis, A. and Boutsidis, C.: "Provable Deterministic Leverage Score Sampling", 2014; 
-- ...
 
 ## Requirements
 
