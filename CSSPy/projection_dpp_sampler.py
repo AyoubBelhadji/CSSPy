@@ -15,6 +15,24 @@ from scipy.sparse.linalg import svds
 
 class projection_DPP_Sampler:
     def __init__(self, A, k, Q,N):
+        """ Create projection DPP Sampler for the matrix :math:`A` using the marginal kernel :math:`Q^TQ`.
+        :param A: 
+            Matrix :math:`A`.
+        :type A: 
+            array_type
+        :param Q: 
+            Matrix containig the k right singular vectors of :math:`A`.
+        :type Q: 
+            array_type
+        :param k: 
+            The order of low rank apparoximation.
+        :type k: 
+            int
+        :param N: 
+            The dimension of subsampling (the number of columns) of A.
+        :type N: 
+            int
+        """
         self.A = A
         self.Q = Q
         self.N = N
@@ -26,11 +44,8 @@ class projection_DPP_Sampler:
         self.lvs_array = self.Estimate_Leverage_Scores()
     def OneRound(self):
         sampled_indices = np.random.choice(self.N, 1, replace=True, p=list(self.lvs_array))
-        #self.sampling_list.append(sampled_indices)
         column_selected = self.Q_temp[:,sampled_indices[0]]
-        #print(np.linalg.norm(column_selected))
         self.column_selected_temp = 1/np.linalg.norm(column_selected)*column_selected
-        #print(np.linalg.norm(self.column_selected_temp))
         self.Project_On_The_Vector_Orthogonal()
         self.sampling_round = self.sampling_round +1
         return sampled_indices[0]
@@ -46,23 +61,10 @@ class projection_DPP_Sampler:
         return self.A[:,self.sampling_list]
     def Estimate_Leverage_Scores(self):
         return 1/(self.k-self.sampling_round)*np.diag(np.dot(self.Q_temp.T,self.Q_temp))
-    def Evaluate_Approximation_error_fro(self,A_S):
-        approximation_error_function_fro(self.k,self.A,A_S)
-        return approximation_error_function_fro(self.k,self.A,A_S)
-
     def Project_On_The_Vector_Orthogonal(self): 
-        #print(self.column_selected_temp)
         projection_matrix = np.eye(self.k-self.sampling_round) - np.outer(np.transpose(self.column_selected_temp),self.column_selected_temp)
-        #print(projection_matrix)
-        #print(projection_matrix_2)
         lambda_, W = np.linalg.eigh(projection_matrix)
-        #print(np.shape(self.Q_temp))
-        #print(np.linalg.norm(self.column_selected_temp))
         self.Q_temp = self.Q_temp - np.outer(self.column_selected_temp,np.dot(self.column_selected_temp,self.Q_temp))
         self.Q_temp = np.dot(W.T,self.Q_temp)
         self.Q_temp = np.delete(self.Q_temp, 0, axis=0)
-        #qr_q_test,_ = np.linalg.qr(self.Q_temp.T)
-        #self.Q_temp = qr_q_test.T
-        #print(np.rank(self.Q_temp))
-        #print(np.trace(np.dot(self.Q_temp,np.transpose(self.Q_temp))))
 

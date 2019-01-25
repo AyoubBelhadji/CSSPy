@@ -16,6 +16,24 @@ from scipy.sparse.linalg import svds
 
 class largest_leveragescores_Sampler:
     def __init__(self, A, k, Q,N):
+        """ Create largest k-leverage scores Sampler for the matrix :math:`A` for k-low rank apparoximation.
+        :param A: 
+            Matrix :math:`A`.
+        :type A: 
+            array_type
+        :param Q: 
+            Matrix containig the right singular vectors of :math:`A`.
+        :type Q: 
+            array_type
+        :param k: 
+            The order of low rank apparoximation.
+        :type k: 
+            int
+        :param N: 
+            The dimension of subsampling (the number of columns) of A.
+        :type N: 
+            int
+        """
         self.A = A
         self.Q = np.transpose(Q[0:k,:])
         self.N = N
@@ -29,5 +47,3 @@ class largest_leveragescores_Sampler:
         sampled_indices_ = temp_list[0:self.k]
         self.sampling_list = sampled_indices_
         return self.A[:,sampled_indices_]
-
-

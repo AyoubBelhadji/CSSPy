@@ -1,4 +1,4 @@
-#sys.path.append('../')
+# This script compare volume sampling vs projection DPP on toy datasets
 import sys
 sys.path.insert(0, '..')
 import numpy as np
@@ -10,7 +10,6 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from IPython.display import display, HTML
 
-#sys.path.append("../")
 from FrameBuilder.eigenstepsbuilder import *
 from decimal import *
 from copy import deepcopy
@@ -21,15 +20,10 @@ from env.toy_datasets_experiments_tools import *
 from env.toy_datasets_numerical_analysis import *
 
 
-# This is a test for basic functions of this package:
-## * Calculating the k-leverage scores 
-## * Calculating the p_eff(theta) function
-## * Plots of k-leverage scores and cumulative k-leverage scores
 
-# Import two datasets
 
 ## The dimensions of the design matrix X
-N = 21       # The number of observations in the dataset
+N = 100       # The number of observations in the dataset
 real_dim = 20 # The dimension of the dataset
 ## The low rank paramters
 k = 3         # The rank of the low rank approximation 
@@ -63,10 +57,6 @@ trace_cov_2_k_3 = np.sum(cov_2_k_3)
 cov_2_k_3 = trace_cov_1_k_3/trace_cov_2_k_3*cov_2_k_3
 
 
-#cov_1_k_3_ = np.diag(np.concatenate(([100,100,100,0.1,0.05,0.05],0.5*cov_test)))
-#cov_1_k_3___ = np.diag(np.concatenate(([100,100,100,0.1,0.05,0.02],0.05*cov_test)))
-#cov_1_k_3__ = np.diag(np.concatenate(([100,100,100,0.1,0.05,0.02],0.01*cov_test)))
-
 cov_3_k_3 = np.diag(np.concatenate(([0.1,0.1,0.1,0.1,0.1,0.1],cov_test)))
 trace_cov_3_k_3 = np.sum(cov_3_k_3)
 cov_3_k_3 = trace_cov_1_k_3/trace_cov_3_k_3*cov_3_k_3
@@ -79,11 +69,6 @@ cov_5_k_3 = np.diag(np.concatenate(([0.4,0.3,0.2,0.1,0.1,0.1],cov_test)))
 trace_cov_5_k_3 = np.sum(cov_5_k_3)
 cov_5_k_3 = trace_cov_1_k_3/trace_cov_5_k_3*cov_5_k_3
 
-#trace_cov_3_k_3 = np.sum(cov_3_k_3)
-# Singular values of the matrices for the case k =4
-cov_1_k_4 = np.diag(np.concatenate(([100,100,100,100,0.1,0.1],cov_test)))
-cov_2_k_4 = np.diag(np.concatenate(([1000,100,10,1,0.1,0.1],cov_test)))
-cov_3_k_4 = np.diag(np.concatenate(([0.1,0.1,0.1,0.1,0.1,0.1],cov_test)))
 
 # Singular values of the matrices for the case k =5
 cov_1_k_5 = np.diag(np.concatenate(([100,100,100,100,100,0.1],cov_test)))
@@ -103,32 +88,19 @@ cov_4_k_5 = trace_cov_1_k_5/trace_cov_4_k_5*cov_4_k_5
 cov_5_k_5 = np.diag(np.concatenate(([0.6,0.5,0.4,0.3,0.2,0.1],cov_test)))
 trace_cov_5_k_5 = np.sum(cov_5_k_5)
 cov_5_k_5 = trace_cov_1_k_5/trace_cov_5_k_5*cov_5_k_5
-#cov_1_k_5[d-13:d-10]=0.01
-#cov_1_k_5[d-10:d]=0
-# Singular values of the matrices for the case k =6
-cov_1_k_6 = np.diag(np.concatenate(([100,100,100,100,100,100],cov_test_2)))
-cov_2_k_6 = np.diag(np.concatenate(([100000,10000,1000,100,10,1],cov_test)))
-cov_3_k_6 = np.diag(np.concatenate(([0.1,0.1,0.1,0.1,0.1,0.1],cov_test)))
+
 #
 static_list_1 = list(range(4,21))
 static_list_2 = list(range(10,21))
 static_list_5 = list(range(6,21))
 
 
-####
-N = 20
-#cov_2_k_3[d-10:d]=0
-
 plot_results_of_multi_experiments(N,real_dim,r,100,3,mean,cov_1_k_3,static_list_1,0,"projection_spectrum_flat_spectrum_after")
 
 plot_results_of_multi_experiments(N,real_dim,r,100,3,mean,cov_2_k_3,static_list_1,0,"smooth_spectrum_flat_spectrum_after")
 
-#plot_results_of_multi_experiments(N,real_dim,r,100,3,mean,cov_4_k_3,static_list_1,0,"very_smooth_spectrum_flat_spectrum_after")
-
 plot_results_of_multi_experiments(N,real_dim,r,100,3,mean,cov_3_k_3,static_list_1,0,"identity_spectrum_flat_spectrum_after")
 
-
-#plot_results_of_multi_experiments(N,real_dim,r,100,3,mean,cov_5_k_3,static_list_1,0,"very_very_smooth_spectrum_flat_spectrum_after")
 
 
 plot_results_of_multi_experiments(N,real_dim,r,100,5,mean,cov_1_k_5,static_list_5,0,"projection_spectrum_flat_spectrum_after")
@@ -136,26 +108,4 @@ plot_results_of_multi_experiments(N,real_dim,r,100,5,mean,cov_1_k_5,static_list_
 plot_results_of_multi_experiments(N,real_dim,r,100,5,mean,cov_2_k_5,static_list_5,0,"smooth_spectrum_flat_spectrum_after")
 
 plot_results_of_multi_experiments(N,real_dim,r,100,5,mean,cov_3_k_5,static_list_5,0,"identity_spectrum_flat_spectrum_after")
-
-#plot_results_of_multi_experiments(N,real_dim,r,100,5,mean,cov_4_k_5,static_list_5,0,"very_smooth_spectrum_flat_spectrum_after")
-
-#plot_results_of_multi_experiments(N,real_dim,r,100,5,mean,cov_5_k_5,static_list_5,0,"very_very_smooth_spectrum_flat_spectrum_after")
-
-
-#
-#N = 15
-##cov_2_k_3[d-10:d]=0
-#
-#plot_results_of_multi_experiments(N,real_dim,r,100,3,mean,cov_1_k_3,static_list_1,0,"flat_spectrum_after")
-#
-#N= 10
-#plot_results_of_multi_experiments(N,real_dim,r,100,3,mean,cov_1_k_3,static_list_1,0,"flat_spectrum_after")
-#
-#N= 8
-#plot_results_of_multi_experiments(N,real_dim,r,100,3,mean,cov_1_k_3,static_list_1,0,"flat_spectrum_after")
-#
-#
-#N= 20
-#plot_results_of_multi_experiments(N,real_dim,r,100,3,mean,cov_1_k_3,static_list_1,0,"flat_spectrum_after")
-#
 

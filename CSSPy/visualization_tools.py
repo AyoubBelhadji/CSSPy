@@ -59,16 +59,18 @@ def plot_cumul_leverage_scores(klv_vector,dataset_name,k):
     cumul_klv_vector = np.cumsum(klv_vector)
     fig, ax1 = plt.subplots()
     x_axis_list = list(range(N))
-    lns1 = ax1.plot(x_axis_list, cumul_klv_vector, color="#3F5D7D", label = "Cumulative k-leverage score")
-    ax1.fill_between(x_axis_list,[0]*N,cumul_klv_vector, alpha=0.7)
+    lns1 = ax1.plot(x_axis_list, cumul_klv_vector, color="#3F5D7D", label = "Cumulative k-leverage scores")
+    #ax1.fill_between(x_axis_list,[0]*N,klv_vector, alpha=0.7)
     ax2 = ax1.twinx()
-    lns2 = ax2.plot(x_axis_list, klv_vector, color="red", label = "k-leverage score") 
+    lns2 = ax2.plot(x_axis_list, klv_vector, color="red", label = "k-leverage scores") 
     lns = lns1+lns2
     labs = [l.get_label() for l in lns]
     ax2.legend(lns, labs, loc="lower right", bbox_to_anchor=(0.95,0.05))
     ax1.set_xlabel("i",fontsize=16)
-    ax1.set_ylabel(r'$\sum_{j=1}^{i}\mathrm{\ell}_{j}^{k}$')
-    ax2.set_ylabel(r'$\mathrm{\ell}_{i}^{k}$')
+    ax1.set_ylabel(r'$\sum_{j=1}^{i}\mathrm{\ell}_{j}^{k}$',color="#3F5D7D")
+    ax1.tick_params(axis='y',labelcolor="#3F5D7D")
+    ax2.set_ylabel(r'$\mathrm{\ell}_{i}^{k}$',color="red")
+    ax2.tick_params(colors='red')
     plt.xticks(fontsize=16)
     figfile_name= dataset_name+"_cumul_klv_k_"+str(k)+".pdf"
     plt.savefig(figfile_name)

@@ -26,11 +26,8 @@ class k_Volume_Sampling_Sampler:
         self.column_selected_temp = np.zeros(k)
     def OneRound(self):
         sampled_indices = np.random.choice(self.N, 1, replace=True, p=list(self.lvs_array))
-        #self.sampling_list.append(sampled_indices)
         column_selected = self.Q_temp[:,sampled_indices[0]]
-        #print(np.linalg.norm(column_selected))
         self.column_selected_temp = 1/np.linalg.norm(column_selected)*column_selected
-        #print(np.linalg.norm(self.column_selected_temp))
         self.Project_On_The_Vector_Orthogonal()
         self.sampling_round = self.sampling_round +1
         return sampled_indices[0]

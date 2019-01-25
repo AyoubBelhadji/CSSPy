@@ -46,6 +46,3 @@ class Uniform_Sampler:
         self.sampling_round = 0      
         self.sampling_list = self.OneRound()
         return self.A[:,self.sampling_list]
-    def Evaluate_Approximation_error_fro(self,A_S):
-        approximation_error_function_fro(self.k,self.A,A_S)
-        return approximation_error_function_fro(self.k,self.A,A_S)

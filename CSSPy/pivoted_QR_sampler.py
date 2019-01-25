@@ -38,4 +38,3 @@ class Pivoted_QR_Sampler:
         _, _, permutation_QR = linalg.qr(self.A, pivoting=True)      
         self.sampling_list = list(permutation_QR)[0:self.k]
         return self.A[:,self.sampling_list]
-

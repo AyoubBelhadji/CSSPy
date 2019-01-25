@@ -13,7 +13,7 @@ rcParams.update({'figure.autolayout': True})
 ## * Plots of k-leverage scores and cumulative k-leverage scores
 
 # Importing the dataset
-dataset_name = "RELATHE"
+dataset_name = "Basehock"
 dataset_file = dataset_name+str("_X")
 t = timeit.Timer('char in text', setup='text = "sample string"; char = "g"')
 X_df = pd.read_csv('datasets/'+dataset_file+'.csv', sep=",", header=None)
@@ -30,7 +30,7 @@ _,D,V = np.linalg.svd(X_matrix)
 # The order of PCA
 k = 10
 
-# Calculate and make in order the k-leverage scores
+# Calculate and sort the k-leverage scores
 V_k = calculate_right_eigenvectors_k_svd(X_matrix,k)
 klv_test_1 = np.asarray(list(reversed(np.sort((np.diag(np.dot(np.transpose(V_k),V_k)))))))
 

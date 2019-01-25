@@ -3,9 +3,6 @@ import sys
 sys.path.insert(0, '..')
 from CSSPy.dataset_tools import *
 from CSSPy.doublephase_sampler import *
-#from CSSPy.doublephase_strong_sampler import *
-from CSSPy.derandomized_projection_dpp_sampler import *
-from CSSPy.derandomized_volume_sampler import *
 from CSSPy.volume_sampler import *
 from CSSPy.optimized_projection_dpp_sampler import *
 from CSSPy.projection_dpp_sampler import *
@@ -18,9 +15,6 @@ import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
 from copy import deepcopy
-import scipy.io
-import numpy as np
-import pandas as pd
 import seaborn as sns
 from scipy import random, linalg, dot, diag, all, allclose
 import timeit
