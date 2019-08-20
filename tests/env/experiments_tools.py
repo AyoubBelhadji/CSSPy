@@ -199,10 +199,10 @@ def plot_results_of_multi_experiments(N,real_dim,r,T_,k_,mean,cov_,static_list_,
     error_lists.append(projection_dpp_fro_list)
     error_lists.append(theoretical_projection_DPP_error_bound_list)
     legends_list = []
-    legends_list.append("V.S. bound")
-    legends_list.append("V.S.")
-    legends_list.append("P. DPP")
-    legends_list.append("P. DPP bound for "+r'$\beta = 1$')
+    legends_list.append("Borne th. VS")
+    legends_list.append("VS")
+    legends_list.append("PPD")
+    legends_list.append("Borne th. PPD")
     axislabel_list = []
     axislabel_list.append(r'$\mathrm{p}$')
     filename_list = []

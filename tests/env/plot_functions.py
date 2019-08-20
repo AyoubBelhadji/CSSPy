@@ -59,7 +59,7 @@ def plot_approximation_errors_on_toy_datasets(cardinal_global_list,cardinal_glob
             plt.hlines( error_lists_0[count_list_2],cardinal_lists_0[count_list_2]-0.5,cardinal_lists_0[count_list_2]+0.25, color=palette_paired(5))            
         count_list_2 = count_list_2 +1
     #plt.bar(cardinal_global_list,list(error_lists[3]),label=legends_list[3],edgecolor=palette_paired(5),alpha=0)
-    plt.scatter(cardinal_global_list_list,error_lists[2],label=legends_list[2],marker='x',color=palette_paired(8)) ## change to 4
+    plt.scatter(cardinal_global_list_list,error_lists[2],label=legends_list[2],marker='x',color=palette_paired(4)) ## change to 4
     #plt.grid(True)
     #plt.gca().xaxis.grid(True, which='minor')  # minor grid on too
     #ax = plt.axes()
@@ -67,7 +67,7 @@ def plot_approximation_errors_on_toy_datasets(cardinal_global_list,cardinal_glob
     x_index_min = min(cardinal_global_list_list)
     x_index_max = max(cardinal_global_list_list)
     plt.xlabel(axislabel_list[0], fontsize=16)
-    plt.ylabel(r'$\mathrm{\mathbb{E} \|\| X- \pi_{S}^{Fr} X \|\| _{Fr}^{2}}$', fontsize=16)
+    plt.ylabel(r'$\mathrm{\mathbb{E} \|\| X- \pi_{S,k}^{Fr} X \|\| _{Fr}^{2} }$', fontsize=16)
     #plt.title('The case k = '+str(k)+', '+str(T)+' matrices')
     #plt.xticks(map(int, Y_cov[:-1]))
     plt.legend(bbox_to_anchor=(0.540,0.34), loc="upper left")

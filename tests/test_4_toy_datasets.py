@@ -16,8 +16,8 @@ from copy import deepcopy
 import matplotlib.lines as mlines
 import matplotlib.transforms as mtransforms
 
-from env.toy_datasets_experiments_tools import *
-from env.toy_datasets_numerical_analysis import *
+from env.experiments_tools import *
+from env.numerical_analysis_dpp import *
 
 
 
@@ -95,17 +95,17 @@ static_list_2 = list(range(10,21))
 static_list_5 = list(range(6,21))
 
 
-plot_results_of_multi_experiments(N,real_dim,r,100,3,mean,cov_1_k_3,static_list_1,0,"projection_spectrum_flat_spectrum_after")
+#plot_results_of_multi_experiments(N,real_dim,r,100,3,mean,cov_1_k_3,static_list_1,0,"projection_spectrum_flat_spectrum_after")
 
-plot_results_of_multi_experiments(N,real_dim,r,100,3,mean,cov_2_k_3,static_list_1,0,"smooth_spectrum_flat_spectrum_after")
+#plot_results_of_multi_experiments(N,real_dim,r,100,3,mean,cov_2_k_3,static_list_1,0,"smooth_spectrum_flat_spectrum_after")
 
-plot_results_of_multi_experiments(N,real_dim,r,100,3,mean,cov_3_k_3,static_list_1,0,"identity_spectrum_flat_spectrum_after")
+#plot_results_of_multi_experiments(N,real_dim,r,100,3,mean,cov_3_k_3,static_list_1,0,"identity_spectrum_flat_spectrum_after")
 
 
 
-plot_results_of_multi_experiments(N,real_dim,r,100,5,mean,cov_1_k_5,static_list_5,0,"projection_spectrum_flat_spectrum_after")
+#plot_results_of_multi_experiments(N,real_dim,r,100,5,mean,cov_1_k_5,static_list_5,0,"projection_spectrum_flat_spectrum_after")
 
 plot_results_of_multi_experiments(N,real_dim,r,100,5,mean,cov_2_k_5,static_list_5,0,"smooth_spectrum_flat_spectrum_after")
 
-plot_results_of_multi_experiments(N,real_dim,r,100,5,mean,cov_3_k_5,static_list_5,0,"identity_spectrum_flat_spectrum_after")
+#plot_results_of_multi_experiments(N,real_dim,r,100,5,mean,cov_3_k_5,static_list_5,0,"identity_spectrum_flat_spectrum_after")
 
